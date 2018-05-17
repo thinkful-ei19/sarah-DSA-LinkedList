@@ -231,7 +231,7 @@ function reverse(list) {
   //   return;
   // }
   // previousNode.next = currNode.next;
-  return list;
+  return display(list);
 }
 
 
