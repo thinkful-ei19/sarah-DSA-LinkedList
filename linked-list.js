@@ -64,6 +64,23 @@ class LinkedList {
     }
   }
 
+  insertAt(value, position) {
+    let currNode = this.head;
+    let previousNode = this.head;
+    let count = 0;
+
+    while (currNode.next !== null && count !== position) {
+      previousNode = currNode;
+      currNode = currNode.next;
+      count++;
+      console.log(count);
+    }
+    if (currNode === null) {
+      throw new Error('Cannot insert at position');
+    }
+    previousNode.next = new _Node(value, currNode);
+  }
+
   remove(value) {
     if (this.head === null) {
       return null;
@@ -115,11 +132,12 @@ function main () {
   // LinkedList {
   //   head: _Node { value: 'Apollo', next: _Node { value: 'Boomer', next: null } } }
   SLL.insertLast('Helo');
-  // SLL.insertLast('Husker');
+  SLL.insertLast('Husker');
   // SLL.insertLast('Starbuck');
   // SLL.insertLast('Tauhida');
   // SLL.remove('squirrel');
-  SLL.insertAfter('Sarah', 'Helo');
+  // SLL.insertAfter('Sarah', 'Helo');
+  insertAt('Sarah', 2)
   console.log(SLL.find('Sarah'));
   console.log(SLL.find('Helo'));
 }
