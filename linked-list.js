@@ -65,6 +65,10 @@ class LinkedList {
   }
 
   insertAt(value, position) {
+    if(position === 0) {
+      this.insertFirst(value);
+      return;
+    }
     let currNode = this.head;
     let previousNode = this.head;
     let count = 0;
@@ -78,7 +82,7 @@ class LinkedList {
     if (currNode === null) {
       throw new Error('Cannot insert at position');
     }
-    previousNode.next = new _Node(value, currNode);
+      previousNode.next = new _Node(value, currNode);
   }
 
   remove(value) {
@@ -137,9 +141,9 @@ function main () {
   // SLL.insertLast('Tauhida');
   // SLL.remove('squirrel');
   // SLL.insertAfter('Sarah', 'Helo');
-  insertAt('Sarah', 2)
+  SLL.insertAt('Sarah', 0)
   console.log(SLL.find('Sarah'));
-  console.log(SLL.find('Helo'));
+  console.log(SLL.find('Apollo'));
 }
 
 main();
