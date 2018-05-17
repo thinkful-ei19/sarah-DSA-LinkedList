@@ -7,7 +7,7 @@ class _Node {
   }
 }
 
-class LinkedLast {
+class LinkedList {
   constructor() {
     this.head = null;
   }
@@ -25,6 +25,42 @@ class LinkedLast {
         tmpNode = tmpNode.next;
       }
       tmpNode.next = new _Node(value, null);
+    }
+  }
+
+  insertBefore(value, key) {
+
+    if(this.head.value === key) {
+      this.insertFirst(value);
+      return;
+    }
+
+    let currNode = this.head;
+    let previousNode = this.head;
+
+    while ((currNode !== null && currNode.value !== key)) {
+      previousNode = currNode;
+      currNode = currNode.next;
+      // console.log(currNode, previousNode);
+    }
+    if (currNode === null) {
+      console.log('Item to insert before not found');
+      return;
+    }
+    previousNode.next = new _Node(value, currNode);
+  }
+
+  insertAfter(value, key) {
+    
+    let currNode = this.head;
+    while (currNode !==null && currNode.value !==key) {
+      currNode = currNode.next;
+    }
+    if (currNode === null) {
+      throw new Error('Item to insert after not found');
+    }
+    if(currNode !== null) {
+      currNode.next = new _Node(value, currNode.next);
     }
   }
 
@@ -67,4 +103,25 @@ class LinkedLast {
     return currNode;
   }
 
+  
+
 }
+
+// Creating a singly linked list
+function main () {
+  let SLL = new LinkedList();
+  SLL.insertFirst('Apollo');//LinkedList { head: _Node { value: 'Apollo', next: null } }
+  SLL.insertLast('Boomer');
+  // LinkedList {
+  //   head: _Node { value: 'Apollo', next: _Node { value: 'Boomer', next: null } } }
+  SLL.insertLast('Helo');
+  // SLL.insertLast('Husker');
+  // SLL.insertLast('Starbuck');
+  // SLL.insertLast('Tauhida');
+  // SLL.remove('squirrel');
+  SLL.insertAfter('Sarah', 'Helo');
+  console.log(SLL.find('Sarah'));
+  console.log(SLL.find('Helo'));
+}
+
+main();
