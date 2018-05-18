@@ -226,12 +226,28 @@ function reverse(list) {
     currNode = placeholderNode;
   }
   list.head=previousNode;
+  return list;
+}
+
+function reverseRecursive(list) {
+  let currNode = list.head;
+  let previousNode = null;
+  let placeholderNode;
+
+  //loop through the list and point currNode.next value to previousNode. At currNode = null we need to set as list.head. At current list.head need to set next to null.
+  while ((currNode !== null)) {
+    placeholderNode = currNode.next;
+    currNode.next = previousNode;
+    previousNode = currNode;
+    currNode = placeholderNode;
+  }
+  list.head=previousNode;
   // if (currNode === null) {
   //   console.log('Item not found');
   //   return;
   // }
   // previousNode.next = currNode.next;
-  return display(list);
+  return list;
 }
 
 
@@ -262,6 +278,7 @@ function main () {
   // console.log(findLast(SLL));
   // console.log(findLast(myList));
   console.log(reverse(SLL));
+  console.log(display(SLL));
 }
 
 main();
